@@ -183,7 +183,6 @@ func (procPlg *procPlugin) CollectMetrics(metricTypes []plugin.MetricType) ([]pl
 	}
 
 	// init stateCount map with keys from States
-
 	for _, state := range States.Values() {
 		stateCount[state] = 0
 	}
@@ -193,8 +192,8 @@ func (procPlg *procPlugin) CollectMetrics(metricTypes []plugin.MetricType) ([]pl
 	if err != nil {
 		return nil, serror.New(err)
 	}
-	// calculate number of processes in each state
 
+	// calculate number of processes in each state
 	for _, proc := range stats {
 		stateName := States[proc.State]
 		stateCount[stateName]++
@@ -209,6 +208,7 @@ func (procPlg *procPlugin) CollectMetrics(metricTypes []plugin.MetricType) ([]pl
 
 		isDynamic, _ := ns.IsDynamic()
 		if isDynamic {
+
 			//pid and name is dynamic = all
 			if ns[4].IsDynamic() && ns[5].IsDynamic() {
 				for _, proc := range stats {
